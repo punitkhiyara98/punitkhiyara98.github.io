@@ -138,7 +138,7 @@ footer {
   margin-top: 10px;
 }
 
-section{
+.pics{
   display: flex;
   flex-wrap: wrap;
 }
