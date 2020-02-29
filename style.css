@@ -83,7 +83,14 @@ h2 {
   font-size: 18px;
   font-style: italic;
   font-weight: bold;
-  padding: 0px 15px 10px 15px;
+  padding-bottom: 10px;
+}
+
+.liformat{
+  font-family: "Big Shoulders Text";
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
 }
 
 .edutitle {
@@ -97,6 +104,10 @@ h2 {
 .desc {
   padding-right: 15px;
   padding-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
 }
 
 @media screen and (max-width: 1000px) {
