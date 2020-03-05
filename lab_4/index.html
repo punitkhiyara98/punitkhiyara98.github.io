@@ -26,27 +26,41 @@
     </div>
     <script>
       function clickMe() {
-        let name = "Punit Khiyara";
-        document.title = name + "'s Lab 4";
         const header = document.querySelector(".header");
-        header.innerHTML = name + "'s Lab 4";
         const content = document.querySelector(".content");
-        content.innerHTML = "Hello world";
-        let para1 = document.createElement("p");
-        para1.className = "Para1";
-        let para2 = document.createElement("p");
-        para2.className = "Para2";
-        let namelength = name.length - 1;
-        para1.innerHTML = "my name has " + namelength + " characters.";
-        para2.innerHTML =
-          "the third character in my name is " + name[2].toUpperCase();
-        para2.appendChild(document.createElement("br"));
-        para2.innerHTML += name.slice(-3);
-        let names = name.split(" ");
-        let len = names[0].length + names[1].length;
-        header.innerHTML += " " + len;
-        content.appendChild(para1);
-        content.appendChild(para2);
+        if (header.innerHTML === "Prof A's Demo Page") {
+          let name = "Punit Khiyara";
+          document.title = name + "'s Lab 4";
+          header.innerHTML = name + "'s Lab 4";
+          content.innerHTML = "Hello world";
+          const para1 = document.createElement("p");
+          para1.className = "Para1";
+          const para2 = document.createElement("p");
+          para2.className = "Para2";
+          let namelength = name.length - 1;
+          para1.innerHTML = "my name has " + namelength + " characters.";
+          para2.innerHTML =
+            "the third character in my name is " + name[2].toUpperCase();
+          para2.appendChild(document.createElement("br"));
+          para2.innerHTML += name.slice(-3);
+          let names = name.split(" ");
+          let len = names[0].length + names[1].length;
+          header.innerHTML += " " + len;
+          content.appendChild(para1);
+          content.appendChild(para2);
+        } else {
+          document.title = "Prof A's Demo Page";
+          header.innerHTML = "Prof A's Demo Page";
+          content.innerHTML = "";
+          const para1 = document.createElement("p");
+          para1.innerHTML = `Retro fam narwhal hoodie meggings viral 
+          bushwick yr chartreuse. Chartreuse seitan banh mi selfies, 
+          woke ennui venmo craft beer. Air plant tumeric retro DIY 
+          iPhone poutine. +1 gastropub chillwave, cronut glossier pork 
+          belly tacos poke next level fanny pack vegan jianbing lo-fi.
+          `;
+          content.appendChild(para1);
+        }
       }
     </script>
   </body>
