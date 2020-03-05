@@ -26,8 +26,27 @@
     </div>
     <script>
       function clickMe() {
+        let name = "Punit Khiyara";
+        document.title = name + "'s Lab 4";
+        const header = document.querySelector(".header");
+        header.innerHTML = name + "'s Lab 4";
         const content = document.querySelector(".content");
         content.innerHTML = "Hello world";
+        let para1 = document.createElement("p");
+        para1.className = "Para1";
+        let para2 = document.createElement("p");
+        para2.className = "Para2";
+        let namelength = name.length - 1;
+        para1.innerHTML = "my name has " + namelength + " characters.";
+        para2.innerHTML =
+          "the third character in my name is " + name[2].toUpperCase();
+        para2.appendChild(document.createElement("br"));
+        para2.innerHTML += name.slice(-3);
+        let names = name.split(" ");
+        let len = names[0].length + names[1].length;
+        header.innerHTML += " " + len;
+        content.appendChild(para1);
+        content.appendChild(para2);
       }
     </script>
   </body>
