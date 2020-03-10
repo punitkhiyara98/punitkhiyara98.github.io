@@ -269,7 +269,23 @@
     ]
     console.log("List of countries in the world", countries);
     const list = document.createElement("ol");
+    const content = document.querySelector(".content");
+    content.appendChild(list);
     list.className = "countries";
+    const btn = document.querySelector(".activate");
+    function rndcountry() {
+      let nums = [];
+      for (i=0; i<25; i++){
+        let num = Math.floor(Math.random() * Math.floor(countries.length));
+        while(nums.indexOf(num) !== -1){
+          num = Math.floor(Math.random() * Math.floor(countries.length));
+        }
+        nums.push(num);
+      }
+      console.log(nums);
+    }
+    btn.addEventListener("click", rndcountry);
+    
   </script>
 </body>
 
