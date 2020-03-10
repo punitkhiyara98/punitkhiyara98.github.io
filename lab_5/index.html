@@ -274,18 +274,34 @@
     list.className = "countries";
     const btn = document.querySelector(".activate");
     function rndcountry() {
+      list.innerHTML = "";
       let nums = [];
-      for (i=0; i<25; i++){
+      let counts = [];
+      // First Loop for Numbers to Use
+      for (let p=0; p<25; p++){
         let num = Math.floor(Math.random() * Math.floor(countries.length));
         while(nums.indexOf(num) !== -1){
           num = Math.floor(Math.random() * Math.floor(countries.length));
         }
         nums.push(num);
       }
-      console.log(nums);
+      //Second Loop to Find Corresponding Countries to the Random Numbers Chosen
+      for (let i = 0; i<nums.length; i++){
+        counts.push(countries[nums[i]]);
+      }
+      counts.sort((a, b) => a.name.localeCompare(b.name));
+      counts.forEach(function(count){
+        const newelement = document.createElement("li");
+        newelement.innerHTML = count.code.bold() + " " + count.name;
+        list.appendChild(newelement);
+      });
+      countries.forEach((country)=>{
+        if (counts.indexOf(country) === -1){
+          console.log(country.code+" "+country.name);
+        }
+      })
     }
     btn.addEventListener("click", rndcountry);
-    
   </script>
 </body>
 
