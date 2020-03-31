@@ -1,15 +1,83 @@
-form {
+body{
+    font-family: Helvetica, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #444;
+    background: #eee;
+}
 
+form {
+    /* Center the form on the page */
+    margin: 0 auto;
+    width: 445px;
+    /* Form outline */
+    padding: 1em;
 }
 
 label {
-
+    /* Uniform size & alignment */
+    display: inline-block;
+    width: 90px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: left;
+    padding-bottom: 1em;
 }
 
 input, textarea {
-    
+    /* To make sure that all text fields have the same font settings
+     By default, textareas have a monospace font */
+    font: 1em sans-serif;
+
+    /* Uniform text field size */
+    width: 445px;
+    box-sizing: border-box;
+
+    /* Match form field borders */
+    border: 1px solid #999;
+}
+
+input{
+    width: 300px;
+}
+
+textarea{
+    width: 445px;
+    border-radius: 6px;
 }
 
 ul {
-
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 56px;
+    text-transform: capitalize;
+    flex-wrap: nowrap;
+}
+
+.submit {
+    background-color: #ffc477;
+    -moz-border-radius: 11px;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    border: 2px solid #eeb44f;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 14px;
+    padding: 10px 17px;
+    text-decoration: none;
+    text-shadow: 0px 1px 1px #cc9f52;
+  }
+  
+  .submit:hover {
+    background-color: coral;
+    border: 2px solid rgb(216, 91, 46);
+  }
