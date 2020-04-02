@@ -8,41 +8,41 @@ body{
 form {
     /* Center the form on the page */
     margin: 0 auto;
-    width: 445px;
+    width: 410px;
     /* Form outline */
     padding: 1em;
 }
+
+form li + li {
+    margin-top: 1em;
+  }
 
 label {
     /* Uniform size & alignment */
     display: inline-block;
     width: 90px;
     font-size: 24px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-align: left;
-    padding-bottom: 1em;
+    padding-bottom: 20px;
 }
 
 input, textarea {
     /* To make sure that all text fields have the same font settings
      By default, textareas have a monospace font */
-    font: 1em sans-serif;
-
-    /* Uniform text field size */
-    width: 445px;
-    box-sizing: border-box;
+    font: 1em Courier;
 
     /* Match form field borders */
     border: 1px solid #999;
 }
 
 input{
-    width: 300px;
+    padding: 5px;
 }
 
 textarea{
-    width: 445px;
     border-radius: 6px;
+    padding: 12px;
 }
 
 ul {
@@ -56,9 +56,10 @@ h1{
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 56px;
+    font-size: 48px;
     text-transform: capitalize;
     flex-wrap: nowrap;
+    padding-right: 48px;
 }
 
 .submit {
@@ -71,8 +72,8 @@ h1{
     cursor: pointer;
     color: #ffffff;
     font-family: Verdana;
-    font-size: 14px;
-    padding: 10px 17px;
+    font-size: 18px;
+    padding: 14px 17px;
     text-decoration: none;
     text-shadow: 0px 1px 1px #cc9f52;
   }
