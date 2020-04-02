@@ -42,7 +42,9 @@ input{
 
 textarea{
     border-radius: 6px;
+    line-height: 1.5;
     padding: 12px;
+    box-shadow: 1px 1px 1px #999;
 }
 
 ul {
@@ -59,7 +61,7 @@ h1{
     font-size: 48px;
     text-transform: capitalize;
     flex-wrap: nowrap;
-    padding-right: 48px;
+    padding-right: 15px;
 }
 
 .submit {
@@ -67,13 +69,13 @@ h1{
     -moz-border-radius: 11px;
     -webkit-border-radius: 11px;
     border-radius: 11px;
-    border: 2px solid #eeb44f;
+    border: 3px solid #eeb44f;
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
     font-family: Verdana;
     font-size: 18px;
-    padding: 14px 17px;
+    padding: 12px 20px;
     text-decoration: none;
     text-shadow: 0px 1px 1px #cc9f52;
   }
