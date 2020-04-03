@@ -21,13 +21,29 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Maps Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a stylish map.
+          <div id="mapid"></div>
         </div>
         <div class="footer">Make some markers work!</div>
       </div>
     </div>
     <script>
-        /* Your lab code can go here, or in an external file you include */
+      /* Your lab code can go here, or in an external file you include */
+      var mymap = L.map("mapid").setView([38.9860, -76.9451], 17);
+      L.tileLayer(
+        "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: "mapbox/streets-v11",
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken:
+            "pk.eyJ1IjoicGtoaXlhcmEiLCJhIjoiY2s4am9hYmE5MGowcTNncW84OXNoZ2k3YSJ9.D_6qivZ-RpFXS8GDLNZHDQ"
+        }
+      ).addTo(mymap);
+      var marker = L.marker([38.9860, -76.9451]).addTo(mymap);
+      marker.bindPopup("<b>McKeldin Library</b>").openPopup();
     </script>
   </body>
 </html>
