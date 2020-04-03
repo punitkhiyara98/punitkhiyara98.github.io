@@ -8,7 +8,7 @@ const overlay = document.querySelector(".overlay");
 
 function display(c) {
   displayedImage.src = c.target.src;
-};
+}
 
 /* Looping through images */
 
@@ -32,7 +32,7 @@ function darklight() {
     btn.textContent = "Darken";
     overlay.style.backgroundColor = "rgba(0,0,0,0)";
   }
-};
+}
 
 /* Wiring up the Darken/Lighten button */
 

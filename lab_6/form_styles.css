@@ -1,86 +1,87 @@
-body{
-    font-family: Helvetica, Geneva, Tahoma, sans-serif;
-    font-size: 18px;
-    color: #444;
-    background: #eee;
+body {
+  font-family: Helvetica, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  color: #444;
+  background: #eee;
 }
 
 form {
-    /* Center the form on the page */
-    margin: 0 auto;
-    width: 400px;
-    /* Form outline */
-    padding: 1em;
+  /* Center the form on the page */
+  margin: 0 auto;
+  width: 400px;
+  /* Form outline */
+  padding: 1em;
 }
 
 form li + li {
-    margin-top: 1em;
-  }
+  margin-top: 1em;
+}
 
 label {
-    /* Uniform size & alignment */
-    display: inline-block;
-    width: 90px;
-    font-size: 24px;
-    letter-spacing: 0.5px;
-    text-align: left;
-    padding-bottom: 20px;
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 90px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  padding-bottom: 20px;
 }
 
-input, textarea {
-    /* To make sure that all text fields have the same font settings
+input,
+textarea {
+  /* To make sure that all text fields have the same font settings
      By default, textareas have a monospace font */
-    font: 1em Courier;
+  font: 1em Courier;
 
-    /* Match form field borders */
-    border: 1px solid #999;
+  /* Match form field borders */
+  border: 1px solid #999;
 }
 
-input{
-    padding: 5px;
+input {
+  padding: 5px;
 }
 
-textarea{
-    border-radius: 6px;
-    line-height: 1.5;
-    padding: 12px;
-    box-shadow: 1px 1px 1px #999;
+textarea {
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 12px;
+  box-shadow: 1px 1px 1px #999;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 48px;
-    text-transform: capitalize;
-    flex-wrap: nowrap;
-    padding-right: 15px;
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 48px;
+  text-transform: capitalize;
+  flex-wrap: nowrap;
+  padding-right: 15px;
 }
 
 .submit {
-    background-color: #ffc477;
-    -moz-border-radius: 11px;
-    -webkit-border-radius: 11px;
-    border-radius: 11px;
-    border: 3px solid #eeb44f;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Verdana;
-    font-size: 18px;
-    padding: 12px 20px;
-    text-decoration: none;
-    text-shadow: 0px 1px 1px #cc9f52;
-  }
-  
-  .submit:hover {
-    background-color: coral;
-    border: 2px solid rgb(216, 91, 46);
-  }
+  background-color: #ffc477;
+  -moz-border-radius: 11px;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  border: 3px solid #eeb44f;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Verdana;
+  font-size: 18px;
+  padding: 12px 20px;
+  text-decoration: none;
+  text-shadow: 0px 1px 1px #cc9f52;
+}
+
+.submit:hover {
+  background-color: coral;
+  border: 2px solid rgb(216, 91, 46);
+}
