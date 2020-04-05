@@ -20,8 +20,23 @@
         .then((data) => JSON.parse(data)) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
         .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
           console.log(data);
-
-          // return data; // <- this will pass the data to the next "then" statement when I'm ready.
+          return data; // <- this will pass the data to the next "then" statement when I'm ready.
+        })
+        .then((data) =>{
+          const content = document.querySelector(".content");
+          const list = document.createElement("ol");
+          content.appendChild(list);
+          let nums = [];
+          for (let x = 0; x < 15; x++){
+            nums.push(x);
+          }
+          for (let p = 15; p < data.length; p++) {
+            let num = Math.floor(Math.random() * Math.floor(p + 1));
+            if (num < 15) {
+              nums[num] = p;
+            }
+          }
+          
         })
     </script>
   </body>
