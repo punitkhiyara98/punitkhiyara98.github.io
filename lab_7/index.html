@@ -23,12 +23,15 @@
         <div class="content">
           <div id="mapid"></div>
         </div>
+        <div class="btns">
+          <button id="res" class="reset">Reset View</button>
+          <button id="chng" class="reset">Change Food Locations</button>
+        </div>
         <div class="footer">Make some markers work!</div>
       </div>
     </div>
     <script>
-      /* Your lab code can go here, or in an external file you include */
-      var mymap = L.map("mapid").setView([38.9860, -76.9451], 17);
+      let mymap = L.map("mapid");
       L.tileLayer(
         "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
         {
@@ -42,8 +45,73 @@
             "pk.eyJ1IjoicGtoaXlhcmEiLCJhIjoiY2s4am9hYmE5MGowcTNncW84OXNoZ2k3YSJ9.D_6qivZ-RpFXS8GDLNZHDQ"
         }
       ).addTo(mymap);
-      var marker = L.marker([38.9860, -76.9451]).addTo(mymap);
-      marker.bindPopup("<b>McKeldin Library</b>").openPopup();
+      let marker = L.marker([38.986, -76.9451])
+        .bindPopup("McKeldin Library", {
+          minWidth: "150",
+          maxWidth: "400",
+          className: "custompopup"
+        })
+        .addTo(mymap);
+      let mgroup = L.layerGroup([]).addTo(mymap);
+      let coords = [4, 3, 2];
+      function fetchdata() {
+        return fetch(
+          "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+        )
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            for (let p = 3; p < data.length; p++) {
+              let num = Math.floor(Math.random() * Math.floor(p + 1));
+              if (num < 3 && "geocoded_column_1" in data[p]) {
+                coords[num] = p;
+              }
+            }
+            for (let i = 0; i < coords.length; i++) {
+              coords[i] = {
+                name: data[coords[i]].name.toLowerCase(),
+                coord: data[coords[i]].geocoded_column_1.coordinates
+              };
+            }
+            return coords;
+          });
+      }
+      function populate() {
+        fetchdata().then(crd => {
+          for (let x = 0; x < crd.length; x++) {
+            let m = L.marker([crd[x].coord[1], crd[x].coord[0]])
+              .addTo(mymap)
+              .bindPopup(crd[x].name, {
+                minWidth: "150",
+                maxWidth: "400",
+                className: "custompopup"
+              });
+            mgroup.addLayer(m);
+          }
+        });
+      }
+      populate();
+      mymap.setView([38.986, -76.9451], 17);
+      marker.openPopup();
+      const rstbtn = document.querySelector("#res");
+      const chnbtn = document.querySelector("#chng");
+      // let food = document.getElementsByClassName("leaflet-popup-content");
+      function reset() {
+        mymap.setView([38.986, -76.9451], 17);
+        marker.openPopup();
+      }
+      function chngloc() {
+        mgroup.clearLayers();
+        populate();
+      }
+      rstbtn.addEventListener("click", reset);
+      chnbtn.addEventListener("click", chngloc);
+      // function moreinfo(){
+      //   food.addEventListener('click', function(event) {window.open("https://www.google.com/search?q="+food.innerHTML,"_blank")});
+      // }
+      // moreinfo();
+      // console.log(food);
     </script>
   </body>
 </html>
