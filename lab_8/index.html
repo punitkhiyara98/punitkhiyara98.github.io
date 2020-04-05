@@ -12,31 +12,45 @@
         <div class="content">
           When your lab is done, this should be replaced with a useful chart full of food data.
         </div>
+        <button id="res" class="reset">Change Countries</button>
         <div class="footer">Let's eat out in the future!</div>
       </div>
     </div>
     <script>
       fetch('./countries.json')
-        .then((data) => JSON.parse(data)) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
+        .then((data) => data.json()) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
         .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
           console.log(data);
           return data; // <- this will pass the data to the next "then" statement when I'm ready.
         })
         .then((data) =>{
+          const rstbtn = document.querySelector("#res");
           const content = document.querySelector(".content");
           const list = document.createElement("ol");
           content.appendChild(list);
-          let nums = [];
-          for (let x = 0; x < 15; x++){
-            nums.push(x);
-          }
-          for (let p = 15; p < data.length; p++) {
-            let num = Math.floor(Math.random() * Math.floor(p + 1));
-            if (num < 15) {
-              nums[num] = p;
+          function populate(){
+            let nums = [];
+            for (let x = 0; x < 15; x++){
+              nums.push(x);
             }
+            for (let p = 15; p < data.length; p++) {
+              let num = Math.floor(Math.random() * Math.floor(p + 1));
+              if (num < 15) {
+                nums[num] = p;
+              }
+            }
+            nums.forEach(function(count) {
+              const newelement = document.createElement("li");
+              newelement.innerHTML = data[count].code.bold() + " " + data[count].name;
+              list.appendChild(newelement);
+            });
           }
-          
+          function reset(){
+            list.innerHTML = "";
+            populate();
+          }
+          populate();
+          rstbtn.addEventListener("click", reset);
         })
     </script>
   </body>
