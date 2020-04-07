@@ -23,30 +23,61 @@
           return data; // <- this will pass the data to the next "then" statement when I'm ready.
         })
         .then((data) => {
-          cats = {};
-          data.forEach(function(d){
-            if ("category" in d){
-              if (d.category in cats) {
-                cats[d.category]++;
+          return data.reduce(function (accumulator, obj) {
+            if ("category" in obj){
+              let cat = obj["category"]
+              if (cat in accumulator) {
+                accumulator[cat]++;
               } else{
-                cats[d.category] = 1;
+                accumulator[cat] = 1;
               }
+              return accumulator;
             }
-          });
-          return cats;
-          // console.log(data.reduce(function (acc, obj) {
-          //   let key = obj["category"]
-          //   if (!acc[key]) {
-          //     acc[key] = 1;
-          //   } else{
-          //     acc[key]++;
-          //   }
-          //   return acc
-          // }, {}));
+          }, {});
         })
         .then((data) => {
-          
+          let dataps = [];
+          let arr = Object.entries(data).sort((a, b) => a[1] - b[1]);
+          arr.forEach(function(x){
+            dataps.push({y: x[1], label:x[0]})
+          });
+          return dataps;
+        })
+        .then((data) => {
+          let content = document.querySelector(".content");
+          content.innerHTML = "";
+          let div = document.createElement("div");
+          div.id = "chartContainer";
+          content.appendChild(div);
+          window.onload = function () {
+          var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            colorSet: "colorset1",
+            title:{
+              text:"Let's Find Somewhere To Eat"
+            },
+            axisX:{
+              interval: 1
+            },
+            axisY:{
+              labelFontSize:5 
+            },
+            axisY2:{
+              interlacedColor: "rgba(224, 41, 0,.2)",
+              gridColor: "rgba(224, 41, 0,.1)",
+              title: "Number of Places"
+            },
+            data: [{
+              type: "bar",
+              name: "companies",
+              axisYType: "secondary",
+              dataPoints: data
+            }]
+          });
+          chart.render();
+          }
         });
     </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </body>
 </html>

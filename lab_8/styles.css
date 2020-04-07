@@ -68,7 +68,7 @@ h3 {
 .content {
   background: #fff;
   border: 2px dotted #444;
-  align-self: flex-start;
+  align-self: center;
   width: 85%;
   padding: 10px;
   overflow-wrap: break-word;
@@ -99,4 +99,9 @@ h3 {
 .activate:active {
   position: relative;
   top: 1px;
+}
+
+#chartContainer{
+  height: 500px; 
+  width: 100%;
 }
