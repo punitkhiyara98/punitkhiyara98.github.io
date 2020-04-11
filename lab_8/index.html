@@ -50,31 +50,46 @@
           div.id = "chartContainer";
           content.appendChild(div);
           window.onload = function () {
-          var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            colorSet: "colorset1",
-            title:{
-              text:"Let's Find Somewhere To Eat"
-            },
-            axisX:{
-              interval: 1
-            },
-            axisY:{
-              labelFontSize:5 
-            },
-            axisY2:{
-              interlacedColor: "rgba(224, 41, 0,.2)",
-              gridColor: "rgba(224, 41, 0,.1)",
-              title: "Number of Places"
-            },
-            data: [{
-              type: "bar",
-              name: "companies",
-              axisYType: "secondary",
-              dataPoints: data
-            }]
-          });
-          chart.render();
+            var chart = new CanvasJS.Chart("chartContainer", {
+              animationEnabled: true,
+              theme: "light2",
+              colorSet: "colorSet2",
+              title:{
+                text: "Let's Find Somewhere To Eat"
+              },
+              axisY: {
+                title: "Number of Food Establishments",
+                titleFontSize: 20,
+                scaleBreaks: {
+                  type: "zigzag",
+                  customBreaks: [
+                    {
+                      startValue: 70,
+                      endValue: 110
+                    },
+                    {
+                      startValue: 170,
+                      endValue: 200
+                    }
+                  ]
+                }
+              },
+              axisX: {
+                title: "Categories of Food Establishments",
+                titleFontSize: 20,
+                labelFontSize: 12,
+                labelAngle: -45,
+                interval:1,
+                labelMaxWidth: 100,
+                labelAutoFit: true,
+                labelWrap: true,
+              },
+              data: [{        
+                type: "column", 
+                dataPoints: data
+              }]
+            });
+            chart.render();
           }
         });
     </script>
