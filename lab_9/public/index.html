@@ -4,6 +4,7 @@
 <head>
   <title>Replace Me With Your Lab Page</title>
   <link rel="stylesheet" type="text/css" href="./styles.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 <body>
@@ -16,21 +17,21 @@
   </div>
   <script>
     fetch('/api') // Rather than fetching from PG County, we're going to fetch from our own server.
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         // Here's where your chart code should go.
-        let chart = new CanvasJS.Chart("chartContainer", {
+        const chart = new CanvasJS.Chart('chartContainer', {
           animationEnabled: true,
-          theme: "light2",
-          colorSet: "colorSet2",
-          title:{
+          theme: 'light2',
+          colorSet: 'colorSet2',
+          title: {
             text: "Let's Find Somewhere To Eat"
           },
           axisY: {
-            title: "Number of Food Establishments",
+            title: 'Number of Food Establishments',
             titleFontSize: 20,
             scaleBreaks: {
-              type: "zigzag",
+              type: 'zigzag',
               customBreaks: [
                 {
                   startValue: 70,
@@ -44,23 +45,24 @@
             }
           },
           axisX: {
-            title: "Categories of Food Establishments",
+            title: 'Categories of Food Establishments',
             titleFontSize: 20,
             labelFontSize: 9,
             labelAngle: -45,
-            interval:1,
+            interval: 1,
             labelMaxWidth: 100,
             labelAutoFit: true,
-            labelWrap: true,
+            labelWrap: true
           },
-          data: [{        
-            type: "column", 
-            dataPoints: data
+          data: [{
+            type: 'column',
+            dataPoints: res
           }]
         });
-            chart.render();
-      })
+        chart.render();
+      });
   </script>
+  
 </body>
 
 </html>

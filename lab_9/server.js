@@ -20,28 +20,51 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
-
 function processDataForFrontEnd(req, res) {
-  const baseURL = ''; // Enter the URL for the data you would like to retrieve here
+  const baseURL = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
 
   // Your Fetch API call starts here
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
-    fetch(baseURL)
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data);
-        res.send({ data: data }); // here's where we return data to the front end
-      })
-      .catch((err) => {
-        console.log(err);
-        res.redirect('/error');
+  fetch(baseURL)
+    .then((r) => r.json())
+    .then((data) => {
+      console.log(data.length);
+      return data;
+    })
+    .then((data) => {
+      const result = data.reduce((accumulator, obj) => {
+        const cat = obj.category;
+        if (cat in accumulator) {
+          accumulator[cat] += 1;
+        } else {
+          accumulator[cat] = 1;
+        }
+        return accumulator;
+      }, {});
+      return result;
+    })
+    .then((data) => {
+      const dataps = [];
+      const arr = Object.entries(data).sort((a, b) => a[1] - b[1]);
+      arr.forEach((x) => {
+        dataps.push({ y: x[1], label: x[0] });
       });
+      return dataps;
+    })
+    .then((data) => {
+      console.log(data);
+      res.send({ data: data }); // here's where we return data to the front end
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect('/error');
+    });
 }
 
 // This is our first route on our server.
 // To access it, we can use a "GET" request on the front end
 // by typing in: localhost:3000/api or 127.0.0.1:3000/api
-app.get('/api', (req, res) => {processDataForFrontEnd(req, res)});
+app.get('/api', (req, res) => { processDataForFrontEnd(req, res); });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
