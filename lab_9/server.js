@@ -3,6 +3,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 
+
 // Here we instantiate the server we're going to turn on
 const app = express();
 
@@ -15,6 +16,7 @@ const port = process.env.PORT || 3000;
 // Our server needs certain features - like the ability to send and read JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // And the ability to serve some files publicly, like our HTML.
 app.use(express.static('public'));

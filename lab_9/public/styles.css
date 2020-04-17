@@ -69,12 +69,11 @@ h3 {
 .content {
   background: #fff;
   border: 2px dotted #444;
-  flex-grow: 2;
-  flex: 0 0 200px;
+  align-self: center;
+  width: 85%;
   padding: 10px;
   overflow-wrap: break-word;
   margin: 25px 50px;
-  max-width: 450px;
 }
 
 .button {
@@ -101,4 +100,9 @@ h3 {
 .button:active {
   position: relative;
   top: 1px;
+}
+
+#chartContainer{
+  height: 500px; 
+  width: 100%;
 }
