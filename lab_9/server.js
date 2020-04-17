@@ -31,10 +31,6 @@ function processDataForFrontEnd(req, res) {
   fetch(baseURL)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data.length);
-      return data;
-    })
-    .then((data) => {
       const result = data.reduce((accumulator, obj) => {
         const cat = obj.category;
         if (cat in accumulator) {
