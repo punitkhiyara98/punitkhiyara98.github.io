@@ -14,6 +14,8 @@
           <form class="targetForm" id="labForm">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" />
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" /> <!-- Text since US Zip Codes could include a hyphen -->
             <label for="interests">Interests</label>
             <textarea id="interests" name="interests" rows="5" cols="33">
                 Default text says what?
@@ -27,30 +29,30 @@
     <script>
       function sendForm(e) {
         e.preventDefault(); // this prevents your page reloading on button click
-        const target = document.querySelector("#labForm");
-        const btn = document.querySelector("#formBtn");
+        const target = document.querySelector('#labForm');
+        const btn = document.querySelector('#formBtn');
 
         const formToSend = new FormData(target);
 
-        fetch("/api", {
-          method: "POST",
+        fetch('/api', {
+          method: 'PUT',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(Object.fromEntries(formToSend)),
+          body: JSON.stringify(Object.fromEntries(formToSend))
         })
           .then((data) => data.text()) // note: we didn't send JSON, so there's no JSON to get.
           .then((data) => {
             console.log(data);
-            btn.setAttribute("disabled", true);
-            const br = document.createElement("br");
+            btn.setAttribute('disabled', true);
+            const br = document.createElement('br');
             target.append(br);
             target.append(`${data}`);
           });
       }
 
-      const formBtn = document.querySelector("#formBtn");
-      formBtn.addEventListener("click", sendForm);
+      const formBtn = document.querySelector('#formBtn');
+      formBtn.addEventListener('click', sendForm);
     </script>
   </body>
 </html>
