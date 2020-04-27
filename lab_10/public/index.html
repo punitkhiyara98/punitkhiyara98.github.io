@@ -39,7 +39,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(Object.fromEntries(formToSend)),
+          body: JSON.stringify(Object.fromEntries(formToSend))
         })
           .then((data) => data.text()) // note: we didn't send JSON, so there's no JSON to get.
           .then((txtresponse) => {
