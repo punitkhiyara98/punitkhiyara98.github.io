@@ -24,31 +24,12 @@ async function dbBoot() {
   console.log('async DB boot');
 }
 
-function processDataForFrontEnd(req, res) {
-  const baseURL = ''; // Enter the URL for the data you would like to retrieve here
-
-  // Your Fetch API call starts here
-  // Note that at no point do you "return" anything from this function -
-  // it instead handles returning data to your front end at line 34.
-  fetch(baseURL)
-    .then((r) => r.json())
-    .then((data) => {
-      console.log(data);
-      res.send({ data: data }); // here's where we return data to the front end
-    })
-    .catch((err) => {
-      console.log(err);
-      res.redirect('/error');
-    });
-}
-
 // Syntax change - we don't want to repeat ourselves,
 // or we'll end up with spelling errors in our endpoints.
 //
 app
   .route('/api')
   .get((req, res) => {
-    // processDataForFrontEnd(req, res)
     (async () => {
       const db = await open(dbSettings);
       const result = await db.all('SELECT * FROM user');
@@ -62,7 +43,7 @@ app
       console.log(req.body);
       res.status('418').send('something went wrong, additionally i am a teapot');
     } else {
-      writeUser(req.body.name, dbSettings)
+      writeUser(req.body.name, req.body.zip, req.body.interests, dbSettings)
         .then((result) => {
           console.log(result);
           res.json('Yay! Successful PUT Request'); // simple mode
@@ -78,7 +59,7 @@ app
       console.log(req.body);
       res.status('418').send('something went wrong, additionally i am a teapot');
     } else {
-      writeUser(req.body.name, dbSettings)
+      writeUser(req.body.name, req.body.zip, req.body.interests, dbSettings)
         .then((result) => {
           console.log(result);
           res.send('your request was successful'); // simple mode

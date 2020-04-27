@@ -23,6 +23,7 @@
             ><br />
             <button id="formBtn">Submit</button>
           </form>
+          <button id="getBtn">Get Results</button>
         </div>
       </div>
     </div>
@@ -37,7 +38,7 @@
         fetch('/api', {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(Object.fromEntries(formToSend))
         })
@@ -51,8 +52,29 @@
           });
       }
 
+      function viewData() {
+        const container = document.querySelector('.container');
+        const btn = document.querySelector('#getBtn');
+
+        fetch('/api')
+          .then((data) => data.json()) // note: we didn't send JSON, so there's no JSON to get.
+          .then((data) => {
+            console.log(data);
+            btn.setAttribute('disabled', true);
+            const ol = document.createElement('ol');
+            data.forEach((e) => {
+              const li = document.createElement('li');
+              li.innerHTML = '<b>Name: </b>'+e.name+' | <b>Zip Code: </b>'+e.zip+' | <b>Interests: </b>'+e.interests;
+              ol.append(li);
+            });
+            container.append(ol);
+          });
+      }
+
       const formBtn = document.querySelector('#formBtn');
       formBtn.addEventListener('click', sendForm);
+      const getBtn = document.querySelector('#getBtn');
+      getBtn.addEventListener('click', viewData);
     </script>
   </body>
 </html>
