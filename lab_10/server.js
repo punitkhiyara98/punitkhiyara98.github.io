@@ -22,15 +22,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// async function dbBoot() {
-//   console.log('async DB boot');
-//   const db = await open(dbSettings);
+async function dbBoot() {
+  console.log('async DB boot');
+  const db = await open(dbSettings);
 
 //   await db.exec('CREATE TABLE IF NOT EXISTS user (name)');
 //   await db.exec('INSERT INTO user VALUES ("Beth")');
 //   const result = await db.get('SELECT * FROM user');
 //   console.log('Expected result', result);
-// }
+}
 
 function processDataForFrontEnd(req, res) {
   const baseURL = ''; // Enter the URL for the data you would like to retrieve here
@@ -83,5 +83,5 @@ app
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
-  // dbBoot();
+  dbBoot();
 });
