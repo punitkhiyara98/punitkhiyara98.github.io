@@ -3,16 +3,13 @@
 import express from 'express';
 import fetch from 'node-fetch';
 
-// const sqlite3 = require('sqlite3').verbose(); // We're including a server-side version of SQLite, the in-memory SQL server.
-// const open = require(sqlite).open; // We're including a server-side version of SQLite, the in-memory SQL server.
-
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import writeUser from './libraries/writeuser';
 
 const dbSettings = {
   filename: './tmp/Database.db',
-  driver: sqlite3.Database,
+  driver: sqlite3.Database
 };
 
 const app = express();
@@ -23,13 +20,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 async function dbBoot() {
-  console.log('async DB boot');
   const db = await open(dbSettings);
-
-//   await db.exec('CREATE TABLE IF NOT EXISTS user (name)');
-//   await db.exec('INSERT INTO user VALUES ("Beth")');
-//   const result = await db.get('SELECT * FROM user');
-//   console.log('Expected result', result);
+  console.log('async DB boot');
 }
 
 function processDataForFrontEnd(req, res) {
@@ -63,6 +55,22 @@ app
       console.log('Expected result', result);
       res.json(result);
     })();
+  })
+  .put((req, res) => {
+    console.log('/api PUT request', req.body);
+    if (!req.body.name) {
+      console.log(req.body);
+      res.status('418').send('something went wrong, additionally i am a teapot');
+    } else {
+      writeUser(req.body.name, dbSettings)
+        .then((result) => {
+          console.log(result);
+          res.send('Yay! Successful PUT Request'); // simple mode
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   })
   .post((req, res) => {
     console.log('/api post request', req.body);
