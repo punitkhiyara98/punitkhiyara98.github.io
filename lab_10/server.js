@@ -65,7 +65,7 @@ app
       writeUser(req.body.name, dbSettings)
         .then((result) => {
           console.log(result);
-          res.send('Yay! Successful PUT Request'); // simple mode
+          res.json('Yay! Successful PUT Request'); // simple mode
         })
         .catch((err) => {
           console.log(err);
